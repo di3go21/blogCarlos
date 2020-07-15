@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>hola buienvenido</h1>
+
+<form th:action="@{/buscar}" method="post" >
+
+<h2>que quieres buscar?</h2>
+<input type="text" name="query" id="query" placeholder="buscar...">
+
+
+</form>
+
+	<div th:each="post : ${posts}" >
+	
+		<h3 th:text="${post.titulo}">titulo</h3>
+		<h5 th:text="${post.autor.nickname}" ></h5>
+		<p th:text="${post.contenido}">contenido</p>
+		<small th:text="${post.fecha}">fecha</small>
+		
+		<div th:each="tag : ${post.tags}">
+			<span th:text="${tag.nombre}"></span>
+		</div >
+		
+		<a th:href="@{'/post/'+${post.id}+'/'+${post.titulo}}"> ir al post! </a>
+		
+		
+		
+		
+	
+	</div>
+	
+	
+	<a th:href="@{/vamos}">vamos a vamos</a>
+	
+	
+
+</body>
+</html>

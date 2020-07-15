@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<title>Post Individual</title>
+</head>
+<body>
+
+<h3 th:text="${post.titulo}">titulo</h3>
+		<h5 th:text="${post.autor.nickname}" ></h5>
+		<p th:text="${post.contenido}">contenido</p>
+		<small th:text="${post.fecha}">fecha</small>
+		
+		<div th:each="tag : ${post.tags}">
+			<span th:text="${tag.nombre}"></span>
+		</div >
+
+
+<h1>COMENTARIOS</h1>
+<hr>
+
+	<div th:each="comentario : ${comentarios}" >
+	
+		<h3 th:text="${comentario.usuario.nickname}">titulo</h3>
+		<p th:text="${comentario.contenido}">contenido</p>
+		<small th:text="${comentario.date}">fecha</small>
+		
+	
+		
+		
+		
+		
+		
+	
+	</div>
+
+</body>
+</html>
