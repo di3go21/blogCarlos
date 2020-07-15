@@ -1,10 +1,10 @@
 package io.di3go21.blog.model;
 
+
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
@@ -19,7 +19,8 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
-public class Comentario {
+public class ComentarioRespuesta {
+	
 
 	@GeneratedValue
 	@Id
@@ -28,17 +29,15 @@ public class Comentario {
 	@ManyToOne
 	private Usuario usuario;
 	
-	
-	@ManyToOne
-	private Post post;
-	
-	@Lob
-	private String contenido;
-	
 	@CreationTimestamp
 	private Date date;
+	
+
+	@Lob
+	private String contenido;
 	
 	@OneToMany 
 	private List<ComentarioRespuesta> replys;
 	
+
 }

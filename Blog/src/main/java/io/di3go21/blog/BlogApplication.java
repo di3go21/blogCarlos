@@ -92,7 +92,7 @@ public class BlogApplication {
 			comment.setContenido("HOLA TIO BUEN POST");
 			comR.save(comment);
 			
-			Comentario comment2 = new Comentario();
+			Comentario  comment2= new Comentario();
 			comment2.setPost(post);
 			comment2.setUsuario(usu);
 			comment2.setContenido("MUCHAS GRACIAS BROO");

@@ -1,37 +1,79 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="utf-8">
 <title>Post Individual</title>
 </head>
+<style>
+.respuesta{
+	margin-left: 5em;
+}
+
+.repuesta2{
+	margin-left: 8em;
+}
+
+
+</style>
+
+
+
 <body>
 
-<h3 th:text="${post.titulo}">titulo</h3>
-		<h5 th:text="${post.autor.nickname}" ></h5>
-		<p th:text="${post.contenido}">contenido</p>
-		<small th:text="${post.fecha}">fecha</small>
-		
-		<div th:each="tag : ${post.tags}">
-			<span th:text="${tag.nombre}"></span>
-		</div >
+	<h3 th:text="${post.titulo}">titulo</h3>
+	<h5 th:text="${post.autor.nickname}"></h5>
+	<p th:text="${post.contenido}">contenido</p>
+	<small th:text="${post.fecha}">fecha</small>
+
+	<div th:each="tag : ${post.tags}">
+		<span th:text="${tag.nombre}"></span>
+	</div>
 
 
-<h1>COMENTARIOS</h1>
-<hr>
+	<h1>COMENTARIOS</h1>
+	<hr>
 
-	<div th:each="comentario : ${comentarios}" >
-	
+	<div th:each="comentario : ${comentarios}">
+
 		<h3 th:text="${comentario.usuario.nickname}">titulo</h3>
 		<p th:text="${comentario.contenido}">contenido</p>
 		<small th:text="${comentario.date}">fecha</small>
-		
-	
-		
-		
-		
-		
-		
-	
+
+		<p>responder</p>
+
+		<form th:action="@{'/respuesta/'+${comentario.id}}" method="post"
+			th:object="${comentarioRespuesta}">
+
+			<label>contenido</label> <input type="text" th:field="*{contenido}">
+
+		</form>
+
+		<div th:each="comentResp : ${comentario.replys}" class="respuesta">
+			<h3 th:text="${comentResp.usuario.nickname}">titulo</h3>
+			<p th:text="${comentResp.contenido}">contenido</p>
+			<small th:text="${comentResp.date}">fecha</small>
+
+			<form th:action="@{'/respuesta2/'+${comentResp.id}}+'/'+${post.id}"
+				method="post" th:object="${comentarioRespuesta}">
+
+				<label>contenido</label> <input type="text" th:field="*{contenido}">
+
+			</form>
+
+
+			<div th:each="comentResp2 : ${comentResp.replys}" class="repuesta2">
+				<h3 th:text="${comentResp2.usuario.nickname}">titulo</h3>
+				<p th:text="${comentResp2.contenido}">contenido</p>
+				<small th:text="${comentResp2.date}">fecha</small>
+
+
+			</div>
+
+
+		</div>
+
+
 	</div>
 
 </body>

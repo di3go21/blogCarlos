@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import io.di3go21.blog.model.Comentario;
+import io.di3go21.blog.model.ComentarioRespuesta;
 import io.di3go21.blog.model.Post;
 import io.di3go21.blog.servicios.ComentariosServicio;
 import io.di3go21.blog.servicios.PostServicio;
@@ -30,6 +31,7 @@ public class PostController {
 		List<Comentario> coments = comentarioServicio.dameComentariosDeUnPost(id);
 		model.addAttribute("post",post);
 		model.addAttribute("comentarios",coments);
+		model.addAttribute("comentarioRespuesta",new ComentarioRespuesta());
 		
 		
 		
